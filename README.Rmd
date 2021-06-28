@@ -1,0 +1,83 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Análise da base de dados do pacote Friends
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+<p>O objetivo deste projeto foi realizar algumas análises da base de dados do pacote *Friends*. Embora eu nunca nem tenha assistidp a série, a motivação para este projeto partiu do *Meetup* [Conhecendo o ggplot2: criando gráficos com R](https://www.youtube.com/watch?v=lkX9ms1eX10) realizado pelo @RladiesSP no dia 26 de junho de 2021 pela Letícia Thomaz. A Letícia deu boas dicas para construir gráficos usando o pacote **ggplot2** e, com isso, resolvi reproduzir o exercício realizado no *Meetup* para praticar e ainda tentei utilizar outras ferramentas do R.
+
+```{r}
+# Carregandos pacotes que serão utilizados
+library(friends)
+library(patchwork)
+library(ggplot2)
+
+# Criando objeto e visualizando a base de dados 
+
+b <- friends::friends_info
+
+head(b)
+
+```
+
+# Relação entre número de visualizações e a nota
+
+A base de dados disponível no pacote *Friends* (*friends_info*) consiste de uma tabela com informações sobre cada um dos episódios da série obtidas na Wikipedia e IMDb (*Internet Movie Database*) em 26 de agosto de 2020. No primeiro momento tentei verificar a relização entre o número de visualizações com nota do episódeo. Na minha opinião, faz todo o sentido lógico, que os episódios com maiores notas apresentam maior número de visualizações seja considerando cada temporada ou todas temporadas concomitantemente.    
+```{r echo=FALSE, message=FALSE, out.width="100%"}
+# Verificar visualizações x avaliação (imdb) ------------------------------
+# g1 considerado todas as temporadas
+g1 <- b |>
+  dplyr::select(us_views_millions, imdb_rating) |>
+  ggplot(mapping = aes(x = us_views_millions,
+                       y = imdb_rating)) +
+  geom_point(fill = "blue", alpha = 0.5, size = 1, show.legend = FALSE) +
+  geom_smooth(mapping = aes(us_views_millions, imdb_rating),
+              color = "black",
+              fill = "#5c5c5c",
+              method = "lm",
+              se = TRUE) +
+  labs(x = "Visualizações(milhões)",
+       y = "Avaliação (notas)"
+  ) +
+  theme_bw(base_size = 12)
+
+# g2 considerado os episódios por temporada
+
+g2 <- b |>
+  dplyr::select(season, us_views_millions, imdb_rating) |>
+  dplyr::rename("Temporada" = season) |>
+  ggplot(mapping = aes(x = us_views_millions,
+                       y = imdb_rating,
+                       color = factor(x = Temporada))) +
+  geom_point(alpha = 0.5, size = 1, show.legend = FALSE) +
+  geom_smooth(mapping = aes(us_views_millions, imdb_rating),
+              method = "lm",
+              se = FALSE) +
+  labs(x = "Visualizações(milhões)",
+       y = "Avaliação (notas)"
+       ) +
+  theme_bw(base_size = 12) +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal"
+        )
+
+# Juntando os gráficos ----------------------------------------------------
+
+g1 + g2
+```
+Como podemos observar na figura acima e a esquerda, os dados apresentam uma relação linear entre número de visualizações e a nota do episódios quando considerado todas as temporadas cada temporada isolada. Essa primeira análise confirma minha assunção de que quanto melhor a nota, maior é o número de visualizaçãoes, em outras palavras, quanto mais legal o episódio, maior o número de visualizações.
+
+# Número de visualizações por por temporada
+
