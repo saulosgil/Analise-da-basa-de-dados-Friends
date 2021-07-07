@@ -1,3 +1,5 @@
+library(ggplot2)
+
 # Sumarizar (media e mediana) por temporada -------------------------------
 
 bgrouped <-
@@ -53,3 +55,5 @@ camada3 <-  camada2 + # Rotulando as 2 maiores visualizações
           axis.title = element_text(size = 12, face = "bold"),
           axis.text = element_text(color = "black", size = 10, face = "bold")
     )
+
+camada3
