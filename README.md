@@ -1,5 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
+
+h1{
+  font-size: 80px;
+  color: #afaa17;
+  font-family: 'Noto Serif', serif;
+}
+p{
+  text-align: justify;
+  color: #1d3e81;
+  font-family: 'Noto Serif', serif;
+}
+</style>
 
 # Análise da base de dados do pacote FRIENDS
 
@@ -48,7 +62,7 @@ agosto de 2020. No primeiro momento verifiquei a relação entre o número
 de visualizações com nota do episódio. Numa perspectiva lógica, faz todo
 o sentido que os episódios com maiores notas apresentem maior número de
 visualizações.  
-<img src="README_files/figure-gfm/unnamed-chunk-3-1.png" width="100%" />
+<img src="README_files/figure-gfm/unnamed-chunk-4-1.png" width="100%" />
 Após realizada a análise de observação gráfica, pode-se observar na
 figura acima que os dados apresentam uma relação linear entre número de
 visualizações e a nota do episódios quando considerado todas as
@@ -128,7 +142,7 @@ camada3 <-  camada2 + # Rotulando as 2 maiores visualizações
 camada3
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-4-1.png" width="100%" />
+<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" width="100%" />
 
 Após inspeção visual é possível verificar que a temporada com maior
 número ibope, ou seja, maior número médio de visualizaçãoes foi a
@@ -158,7 +172,7 @@ que continham cenas “neutras” e fiz um gráfico de barras (e um
 análise, pude observar que as cenas alegres (*Joyful*) eram as mais
 frequentes (vide figura abaixo) e, consequentente, assumi que a série é
 uma comédia.
-<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" width="100%" /><img src="README_files/figure-gfm/unnamed-chunk-5-2.png" width="100%" />
+<img src="README_files/figure-gfm/unnamed-chunk-6-1.png" width="100%" /><img src="README_files/figure-gfm/unnamed-chunk-6-2.png" width="100%" />
 Para confirmar minha conclusão de que a série FRIENDS é um série de
 comédia, fui checar no
 [Wikipédia](https://pt.wikipedia.org/wiki/Friends) as informações sobre
