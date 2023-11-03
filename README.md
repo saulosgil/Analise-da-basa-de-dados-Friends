@@ -1,19 +1,3 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
-
-h1{
-  font-size: 80px;
-  color: #afaa17;
-  font-family: 'Noto Serif', serif;
-}
-p{
-  text-align: justify;
-  color: #1d3e81;
-  font-family: 'Noto Serif', serif;
-}
-</style>
-
 # Análise da base de dados do pacote FRIENDS
 
 <!-- badges: start -->
